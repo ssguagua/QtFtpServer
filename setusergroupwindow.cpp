@@ -357,27 +357,6 @@ void SetUserGroupWindow::edit_or_save_access(){
 }
 
 /*
- * 保存用户权限
-*/
-void SetUserGroupWindow::saveUserAccess(){
-    QString user_file_access=getFileAccess();
-    QString user_dir_access=getDirAccess();
-    if(user_file_access!=ftpUser.getFile()&&user_dir_access!=ftpUser.getDirectory()){
-        if(!sqlConnection->updateUserFileAndDirAccess(ftpUser.getId(),user_file_access,user_dir_access)){
-            QMessageBox::warning(this,"错误","修改失败！");
-        }
-    }else if(user_file_access!=ftpUser.getFile()){
-        if(!sqlConnection->updateUserFileAccess(ftpUser.getId(),user_file_access)){
-            QMessageBox::warning(this,"错误","修改失败！");
-        }
-    }else{
-        if(!sqlConnection->updateUserDirAccess(ftpUser.getId(),user_dir_access)){
-            QMessageBox::warning(this,"错误","修改失败！");
-        }
-    }
-}
-
-/*
  * 保存的是用户权限
 */
 void SetUserGroupWindow::saveUserAccess(){
